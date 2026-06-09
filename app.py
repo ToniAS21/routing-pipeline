@@ -218,7 +218,7 @@ if st.session_state.page == "Routing":
         # Export (Diubah menjadi BytesIO agar berjalan optimal di web Streamlit)
         final_df = pd.concat(all_routes, ignore_index=True)
         buffer = io.BytesIO()
-        with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+        with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
             final_df.to_excel(writer, index=False)
         
         st.download_button(
@@ -277,7 +277,7 @@ elif st.session_state.page == "Extract":
         # Fitur Download Excel
         with col2:
             buffer_ext = io.BytesIO()
-            with pd.ExcelWriter(buffer_ext, engine='xlsxwriter') as writer:
+            with pd.ExcelWriter(buffer_ext, engine='openpyxl') as writer:
                 df_extract.to_excel(writer, index=False)
                 
             st.download_button(
